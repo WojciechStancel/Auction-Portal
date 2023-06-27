@@ -1,0 +1,21 @@
+{% extends 'main_app/header.html' %}
+
+{% block title %} Added to cart {% endblock title %}
+
+{% block content %}
+
+<h2 style="text-align: center">Added to shopping basket</h2>
+
+<div>
+{% for item in show_cart %}
+
+   <li> {{item}}</li>
+    <li> Quantity: {{item.qty}}</li>
+
+{% endfor %}
+</div>
+
+<a href="{% url 'cart:cart_view' %}"><button type="submit" >Go to transaction </button></a>
+<a href="{% url 'cart:auctions' %}"><button type="submit" > Back to product list </button></a>
+
+{% endblock %}

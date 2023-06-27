@@ -1,0 +1,12 @@
+{% extends 'main_app/header.html' %}
+
+{% block title %} Order complete {% endblock title %}
+
+{% block content %}
+
+<H2> CONGRATULATIONS, YOUR ORDER IS COMPLETED</H2>
+
+<a href="{% url 'order:orders' %}"><button>Order details</button></a>
+
+
+{% endblock %}

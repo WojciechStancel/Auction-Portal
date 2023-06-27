@@ -1,0 +1,45 @@
+{% extends 'main_app/header.html' %}
+
+{% block title %} Shopping cart {% endblock title %}
+
+{% block content %}
+
+<div class="cart-structor">
+    <h2>Products in your basket</h2>
+    <div>
+    {% for item in show_cart %}
+        <li>PRODUCT: {{item}}</li>
+        <li>QUANTITY: {{item.qty}}</li>
+        <a href="{% url 'cart:cart_remove' item.product_item.id %}"><button type="submit">Remove item</button></a>
+        <a href="{% url 'cart:update_cart' item.product_item.id%}"><button>Add +1</button></a>
+    {% endfor %}
+    </div>
+    <div>
+        <form method="POST">
+          {% csrf_token %}
+            <input class="buy-btn" type="submit" name="buy" value="BUY NOW">
+        </form>
+    </div>
+    <div>
+        <a href="{% url 'product:auctions'%}"><button class="goback-btn">Go back to shopping</button></a>
+    </div>
+    <!--INFO WHEN PRODUCT IS OUT OF STOCK-->
+    {% for info in messages %}
+    {{info}}
+    {% endfor %}
+
+    <!--WHEN BASKET IS EMPTY-->
+    <div class="empty-basket">
+        {% if total_quantity == 0 %}
+        YOUR BASKET IS EMPTY
+        {% endif %}
+    </div>
+
+    <div class="total-price">
+        <h2>Total order:</h2>
+        {{order_total}} USD
+    </div>
+</div>
+
+
+{% endblock %}
