@@ -1,0 +1,16 @@
+{% extends 'main_app/header.html' %}
+
+{% block title %} Your products {% endblock title %}
+
+{% block content %}
+
+{% for prod in product %}
+
+<ul style="list-style-type: none">
+<li>
+{{prod}}<a href="{% url 'user_view:update_product' prod.id %}"><button>Update product details</button></a>
+        <a href="{% url 'user_view:delete_product' prod.id %}"><button>Delete product</button></a>
+</li>
+{% endfor %}
+</ul>
+{% endblock %}
