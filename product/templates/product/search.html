@@ -1,0 +1,24 @@
+{% extends 'main_app/header.html' %}
+
+{% block title %} Searching results {% endblock title %}
+
+{% block content %}
+
+<ul>
+{% for prod in results %}
+<li style="list-style-type: none">
+<a href="{% url 'product:product_detail_view' prod.id %}">{{prod}}</a>
+</li>
+{% endfor %}
+</ul>
+
+
+{% if not results %}
+
+Sorry, we didn't find this product :(
+<button type="button" onclick="history.back()"> Back to product list</button>
+
+{% endif %}
+
+
+{% endblock %}

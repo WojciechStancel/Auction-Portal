@@ -1,0 +1,71 @@
+{% extends 'main_app/header.html' %}
+
+{% block title %} Product list {% endblock title %}
+
+{% block content %}
+<nav>
+<div class="navigation-left-box">
+    <ul class="navigation-auctions-box">
+        <div class="navigation-auctions">
+            <div class="search-box">
+            <!--SEARCH BY NAME OF PRODUCT-->
+                <form action="{% url 'product:search' %}" role="search">
+                    <label for="inp" class="search-form">
+                        <input type="text" placeholder="Search" name="q" value="{{ search_query }}">
+                        <span class="focus-bg"></span>
+                    </label>
+                    <button class="search-btn" type="submit">Submit</button>
+                </form>
+
+            </div>
+            <div class="navigation-title"><a>Category</a></div>
+            <!--CATEGORY SEARCH-->
+            <div class="category" style="list-style-type: none">
+                {% for category in categories %}
+                <li><a href="/auctions/?category={{category.id}}">{{category.name}}</a></li>
+                {% endfor %}
+                {% for product in products %}
+                {% endfor %}
+            </div>
+            <!-- LOG OUT BUTTON -->
+            <a href="{% url 'accounts:logout' %}">
+                <button class="logout-btn" type="submit">Log out</button></a>
+        </div>
+    </ul>
+</div>
+</nav>
+
+<div class="auctions-structor">
+    <div class="auctions-btn" style="padding: 1cm; list-style-type: none">
+            <a href="{% url 'product:add' %}">
+                <button class="auction-btn" type="submit">Add product </button></a>
+            <a href="{% url 'main_app:home' %}">
+                <button class="auction-btn">Back to main</button></a>
+            <a href="#">
+                <button class="auction-btn">Your products</button></a>
+    </div>
+        <!--ALL PRODUCTS-->
+    <div class="auction-loop">
+        <ul style="list-style-type: none">
+        {% for product in products %}
+            <div class="auction">
+            <li>{{product.name}}</li>
+                <div class="auction-picture">
+                        <li>{% if product.photo %}
+                            <img class="auction-img" src="{{product.photo.url}}">
+                        </li>
+                    </div>
+                    <a>Quantity: {{product.quantity}}</a>
+                <div class="auction-price">
+                    <li>Price: {{product.price}} USD</li>
+                </div>
+                <a href="{% url 'product:product_detail_view' product.id %}">
+                    <button class="details-btn">Details</button>
+                </a>
+            {% endif %}
+            {% endfor %}
+            </div>
+        </ul>
+    </div>
+</div>
+{% endblock %}
