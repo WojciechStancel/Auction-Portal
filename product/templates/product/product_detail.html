@@ -1,10 +1,32 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
+{% extends 'main_app/header.html' %}
 
-</body>
-</html>
+{% block title %} Product details {% endblock title %}
+
+{% block content %}
+
+<div class="detail-constructor">
+<p>Added by: {{product.user}}</p>
+<p class="quotations"> {{product.description}}</p>
+<p class="created">Created: {{product.created_at}} </p>
+
+{% if product.photo %}
+    <img src="{{product.photo.url}}" style="max-width: 10cm; max-height: 15cm">
+{% endif %}
+
+
+
+{% if product.quantity > 0 %}
+<a href="{% url 'cart:add_to_shopping_cart' product.id %}"><button type="submit">Add to cart </button></a>
+{% else %}
+{% for message in messages %}
+<p>{{message}}</p>
+{% endfor %}
+{% endif %}
+
+
+
+<a href="{% url 'product:auctions' %}"><button type="submit">Back to all products</button></a>
+<button type="button" onclick="history.back()"> Back to search list</button>
+
+</div>
+{% endblock %}

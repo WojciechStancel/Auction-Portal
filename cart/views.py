@@ -7,7 +7,6 @@ from product.models import Product
 from order.views import start_order
 from order.models import OrderItem
 from decimal import Decimal
-# Create your views here.
 
 
 def get_user_shopping_cart(request):
@@ -80,7 +79,7 @@ def buy_now(request):
 
         if bought:
             show_cart.delete()
-        return redirect('main_app:order_complete')
+        return redirect('cart:order_complete')
 
 
 def cart_remove(request, pk):
