@@ -1,0 +1,27 @@
+{% extends 'main_app/header.html' %}
+
+{% block title %} Log in {% endblock title %}
+
+{% block content %}
+<body>
+<div class="form-structor">
+    <div class="login">
+        <h1 class="form-title" id="login">Log in</h1>
+        <div class="form-holder">
+            <form method="POST">
+                {% csrf_token %}
+                <input type="text" class="input" name="username" placeholder="Username">
+                <input type="password" class="input" name="password" placeholder="Password">
+                <button class="submit-btn"> Login </button>
+            </form>
+        </div>
+    </div>
+</div>
+<div class="wrong-login">
+{% for message in messages %}
+            <p>{{message}}</p>
+        {% endfor %}
+</div>
+</body>
+
+{% endblock %}
