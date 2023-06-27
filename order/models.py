@@ -1,5 +1,5 @@
 from django.db import models
-from product.models import User
+from user_view.models import User
 
 
 class Order(models.Model):

@@ -1,5 +1,6 @@
 from django.db import models
-from product.models import Product, User
+from product.models import Product
+from user_view.models import User
 
 
 class ShoppingCart(models.Model):
