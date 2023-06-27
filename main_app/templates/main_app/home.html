@@ -1,0 +1,27 @@
+{% extends 'main_app/header.html' %}
+
+{% block title %} Home {% endblock title %}
+
+{% block content %}
+
+<div style="margin-bottom: 600px">
+{% if user.is_authenticated %}
+<h2>Hello {{user.username.capitalize}}! :)</h2>
+{% endif %}
+</div>
+
+<div class="home-structor">
+    <div class="home-container">
+        <h2 class="home-title"> Auction Portal </h2>
+    </div>
+    <div class="home-holder">
+        <a href="{% url 'accounts:login' %}">
+            <button class="login-btn" type="submit">Log in</button></a>
+        <a href="{% url 'accounts:register' %}">
+            <button class="signup-btn" type="submit">Sign up</button></a>
+        <a href="{% url 'product:auctions' %}">
+            <button class="auction-btn" type="submit">Auctions</button></a>
+    </div>
+</div>
+
+{% endblock %}
