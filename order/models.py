@@ -14,3 +14,4 @@ class OrderItem(models.Model):
     order = models.ForeignKey(Order, on_delete=models.CASCADE)
     product = models.CharField(max_length=100)
     quantity = models.IntegerField(default=1)
+    created_at = models.DateTimeField(auto_now_add=True)

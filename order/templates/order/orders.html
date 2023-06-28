@@ -4,10 +4,11 @@
 
 {% block content %}
 <ol style="list-style-type: none; font-size: x-large">
-{% for order in order_view %}
+{% for order in orders %}
 
 <li>PRODUCT: {{order.product}}</li>
 <li>QUANTITY: {{order.quantity}}</li>
+<li>CREATED: {{order.created_at}}</li>
 <li>--------------------</li>
 {% endfor %}
 </ol>
