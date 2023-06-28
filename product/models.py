@@ -4,8 +4,12 @@ from user_view.models import User
 
 
 class Category(models.Model):
+    CHOICES = (('Wardrobes', 'Wardrobes'), ('Chairs', 'Chairs'),
+               ('Beds', 'Beds'), ('Washing machines', 'Washing machines'),
+               ('Tables', 'Tables'))
+
     parent_category_id = models.ForeignKey('Category', on_delete=models.CASCADE, null=True, blank=True)
-    name = models.CharField(max_length=100)
+    name = models.CharField(max_length=100, choices=CHOICES)
 
     def __str__(self):
         return self.name
